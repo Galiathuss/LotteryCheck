@@ -33,6 +33,6 @@ if __name__ == '__main__':
     # 可调式启动
     env = os.getenv('env')
     if env != "DEV":
-        uvicorn.run("api:app", host='147.135.112.224',port=21001, reload=False)  # reload:在代码改变后重启服务器，只能在开发的时候使用
+        uvicorn.run("api:app", host='104.219.236.109',port=3001, reload=False)  # reload:在代码改变后重启服务器，只能在开发的时候使用
     else:
-        uvicorn.run("api:app", host='127.0.0.1',port=21001, reload=True)
+        uvicorn.run("api:app", host='127.0.0.1',port=3001, reload=True)
