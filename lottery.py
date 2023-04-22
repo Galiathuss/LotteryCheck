@@ -1,4 +1,4 @@
-import requests
+import requests,httpx
 
 # 判断是否中大乐透
 def DaLeTou(luckNumber:str):
@@ -9,7 +9,7 @@ def DaLeTou(luckNumber:str):
     blueBallList = luckNumberList[5:]
     # 获取当前日期的大乐透中奖后号码
     DaLeTou_URL = 'https://webapi.sporttery.cn/gateway/lottery/getDigitalDrawInfoV1.qry?param=85,0&isVerify=1'
-    res = requests.get(url=DaLeTou_URL)
+    res = httpx.get(url=DaLeTou_URL)
     DaLeTou_data = res.json()
     res = {
         'drawNumber':DaLeTou_data['value']['dlt']['lotteryDrawResult'],
@@ -99,3 +99,5 @@ def ShuangSeQiu(luckNumber:str):
     else:
         res['prize'] = '未中奖'
     return res
+
+res = DaLeTou('01 02 03 04 05 06 07')
