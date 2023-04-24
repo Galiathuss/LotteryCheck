@@ -12,8 +12,9 @@ def DaLeTou(luckNumber:str):
     res = httpx.get(url=DaLeTou_URL)
     DaLeTou_data = res.json()
     res = {
-        'drawNumber':DaLeTou_data['value']['dlt']['lotteryDrawResult'],
-        'luckNumber':luckNumber
+        '开奖日期':DaLeTou_data['value']['dlt']['lotteryDrawTime'],
+        '中奖号码':DaLeTou_data['value']['dlt']['lotteryDrawResult'],
+        '你的号码':luckNumber
     }
     drawNumberList = DaLeTou_data['value']['dlt']['lotteryDrawResult'].split()
     drawRedBallList =  drawNumberList[:5]
@@ -31,25 +32,25 @@ def DaLeTou(luckNumber:str):
             blueBallCount += 1
     # 判断是否中奖
     if redBallCount == 5 and blueBallCount == 2:
-        res['prize'] = '一等奖'
+        res['奖别'] = '一等奖'
     elif redBallCount == 5 and blueBallCount == 1:
-        res['prize'] = '二等奖'
+        res['奖别'] = '二等奖'
     elif redBallCount == 5 and blueBallCount == 0:
-        res['prize'] = '三等奖'
+        res['奖别'] = '三等奖'
     elif redBallCount == 4 and blueBallCount == 2:
-        res['prize'] = '四等奖'
+        res['奖别'] = '四等奖'
     elif redBallCount == 4 and blueBallCount == 1:
-        res['prize'] = '五等奖'
+        res['奖别'] = '五等奖'
     elif redBallCount == 3 and blueBallCount == 2:
-        res['prize'] = '六等奖'
+        res['奖别'] = '六等奖'
     elif redBallCount == 4 and blueBallCount == 0:
-        res['prize'] = '七等奖'
+        res['奖别'] = '七等奖'
     elif (redBallCount == 2 and blueBallCount == 2) or (redBallCount == 3 and blueBallCount == 1):
-        res['prize'] = '八等奖'
+        res['奖别'] = '八等奖'
     elif (redBallCount == 1 and blueBallCount == 2) or (redBallCount == 2 and blueBallCount == 1) or (redBallCount == 3 and blueBallCount == 0) or (redBallCount == 0 and blueBallCount == 2):
-        res['prize'] = '九等奖'
+        res['奖别'] = '九等奖'
     else:
-        res['prize'] = '未中奖'
+        res['奖别'] = '未中奖'
     return res
     
 # 判断是否中双色球
@@ -66,8 +67,9 @@ def ShuangSeQiu(luckNumber:str):
     redBall = ShuangSeQiu_data['result'][0]['red'].replace(',',' ')
     blueBall = ShuangSeQiu_data['result'][0]['blue'].replace(',',' ')
     res = {
-        'drawNumber':redBall + " "+blueBall,
-        'luckNumber':luckNumber
+        '开奖日期':ShuangSeQiu_data['result'][0]['date'],
+        '开奖号码':redBall + " "+blueBall,
+        '你的号码':luckNumber
     }
     drawNumberList = (redBall + " "+blueBall).split()
     drawRedBallList =  drawNumberList[:6]
@@ -85,19 +87,19 @@ def ShuangSeQiu(luckNumber:str):
             blueBallCount += 1
     # 判断是否中奖
     if redBallCount == 6 and blueBallCount == 1:
-        res['prize'] = '一等奖'
+        res['奖别'] = '一等奖'
     elif redBallCount == 6 and blueBallCount == 0:
-        res['prize'] = '二等奖'
+        res['奖别'] = '二等奖'
     elif redBallCount == 5 and blueBallCount == 1:
-        res['prize'] = '三等奖'
+        res['奖别'] = '三等奖'
     elif (redBallCount == 5 and blueBallCount == 0) or (redBallCount == 4 and blueBallCount == 1):
-        res['prize'] = '四等奖'
+        res['奖别'] = '四等奖'
     elif (redBallCount == 4 and blueBallCount == 0) or (redBallCount == 3 and blueBallCount == 1):
-        res['prize'] = '五等奖'
+        res['奖别'] = '五等奖'
     elif (redBallCount == 2 and blueBallCount == 1) or (redBallCount == 1 and blueBallCount == 1) or (redBallCount == 0 and blueBallCount == 1):
-        res['prize'] = '六等奖' 
+        res['奖别'] = '六等奖' 
     else:
-        res['prize'] = '未中奖'
+        res['奖别'] = '未中奖'
     return res
 
-res = DaLeTou('01 02 03 04 05 06 07')
+# res = DaLeTou('01 02 03 04 05 06 07')

@@ -5,12 +5,7 @@ from lottery import DaLeTou, ShuangSeQiu
 import os,uvicorn
 
 # 创建一个服务，把当前这个python文件当做一个服务　
-env = os.getenv('env')
-if env != 'DEV':
-    app = FastAPI(title=' Web支付接口', version='1.0',
-                  docs_url=None, redoc_url=None)
-else:
-    app = FastAPI(title='Web支付接口', version='1.0')
+app = FastAPI(title='Web支付接口', version='1.0')
 
 # 使用get的方法实现查询大乐透的查询
 @app.get('/DaLeTou_query/{luckNumber}')
